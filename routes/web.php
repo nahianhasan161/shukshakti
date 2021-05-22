@@ -20,6 +20,10 @@ if (App::environment('production')) {
 Route::get('/', function () {
     return view('landing');
 });
+
+Route::post('/store', [App\Http\Controllers\MessageController::class, 'store'])->name('store');
+
+
 Route::get('/contract', function () {
     return view('contract');
 });
