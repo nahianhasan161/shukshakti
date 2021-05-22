@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MessageController;
 use App\Mail\MessageMail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\App;
@@ -21,7 +22,7 @@ Route::get('/', function () {
     return view('landing');
 });
 
-Route::post('/store', [App\Http\Controllers\MessageController::class, 'store'])->name('store');
+Route::post('/store', [MessageController::class, 'store'])->name('store');
 
 
 Route::get('/contract', function () {
