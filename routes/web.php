@@ -2,7 +2,8 @@
 
 use App\Mail\MessageMail;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\URL;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+if (App::environment('production')) {
+    URL::forceScheme('https');
+}
 Route::get('/', function () {
     return view('landing');
 });
@@ -27,9 +30,12 @@ Route::get('/message', function () {
 });
 
 
-Route::post('/store', [App\Http\Controllers\MessageController::class, 'store'])->name('store');
+Route::get('/coming', function(){
+    return view('coming_soon/coming_soon');
+});
 
 Auth::routes();
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
